@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friseur Diana — Dein Haar. Deine Persönlichkeit.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #0f0f0f;
+      --bg-2:        #141414;
+      --bg-3:        #1c1c1c;
+      --text:        #ffffff;
+      --text-muted:  #888;
+      --text-soft:   #ccc;
+      --gold:        #c9947a;
+      --gold-light:  #dbb09a;
+      --gold-dark:   #a8705a;
+      --border:      rgba(255,255,255,0.07);
+      --border-gold: rgba(201,148,122,0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── DEMO BANNER ─────────────────────────── */
+    .demo-banner {
+      background: linear-gradient(90deg, #130b09, #1e1210, #130b09);
+      border-bottom: 1px solid var(--gold-dark);
+      text-align: center;
+      padding: 9px 20px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      position: relative;
+      z-index: 200;
+    }
+
+    .demo-banner a {
+      color: var(--gold-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(24,17,15,0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #000 !important;
+      padding: 9px 22px;
+      border-radius: 10px;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light) !important;
+      color: #000 !important;
+    }
+
+    /* ─── HERO ────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 100px 6% 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,148,122,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 85% 80%,  rgba(201,148,122,0.04) 0%, transparent 55%),
+        #0f0f0f;
+    }
+
+    /* Decorative gold lines */
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      top: 15%;
+      left: -8%;
+      width: 116%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(201,148,122,0.12) 40%, rgba(201,148,122,0.12) 60%, transparent 100%);
+      transform: rotate(-1.5deg);
+    }
+
+    .hero::after {
+      bottom: 20%;
+      left: -8%;
+      width: 116%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(201,148,122,0.07) 30%, rgba(201,148,122,0.07) 70%, transparent 100%);
+      transform: rotate(-1.5deg);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      font-weight: 600;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 100px);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.015em;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold-dark);
+      margin: 28px auto;
+    }
+
+    .hero-slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2.4vw, 22px);
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 48px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 14px 34px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,148,122,0.28);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-gold);
+    }
+
+    .btn-outline:hover {
+      background: rgba(201,148,122,0.07);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.25);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: scrollBounce 2.2s ease-in-out infinite;
+    }
+
+    .hero-scroll svg {
+      width: 16px;
+      height: 16px;
+      stroke: rgba(201,148,122,0.45);
+      stroke-width: 1.5;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+      50%       { transform: translateX(-50%) translateY(7px); opacity: 1; }
+    }
+
+    /* ─── SECTION BASE ────────────────────────── */
+    section { padding: 110px 6%; }
+
+    .section-label {
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 15.5px;
+      max-width: 500px;
+      line-height: 1.75;
+    }
+
+    .section-header { margin-bottom: 64px; }
+
+    /* ─── SERVICES ────────────────────────────── */
+    #leistungen { background: var(--bg-2); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--bg-2);
+      padding: 44px 38px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover { background: #1a1a1a; }
+    .service-card:hover::before { transform: translateX(0); }
+
+    .service-icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .service-price {
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─── ABOUT ───────────────────────────────── */
+    #ueber-uns { background: var(--bg); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    .about-text .section-label { margin-bottom: 14px; }
+
+    .about-text p {
+      color: var(--text-soft);
+      font-size: 15.5px;
+      margin-bottom: 20px;
+      line-height: 1.85;
+    }
+
+    .about-quote {
+      margin-top: 32px;
+      padding-left: 24px;
+      border-left: 2px solid var(--gold-dark);
+    }
+
+    .about-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold-light) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.6 !important;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 26px 30px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateX(4px);
+      border-color: var(--gold);
+    }
+
+    .stat-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .stat-info strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+
+    .stat-info span {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* ─── REVIEWS ─────────────────────────────── */
+    #bewertungen { background: var(--bg-2); }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .reviews-header .section-label {
+      justify-content: center;
+    }
+
+    .reviews-header .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .review-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      padding: 36px;
+      border-radius: 16px;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+    }
+
+    .review-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      right: 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      color: rgba(201,148,122,0.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .review-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-3px);
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 16px;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-size: 14.5px;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 17px;
+      color: #000;
+      flex-shrink: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .review-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .review-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .google-badge {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    /* ─── CONTACT ─────────────────────────────── */
+    #kontakt { background: var(--bg); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .contact-items {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .ci-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .ci-body strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .ci-body span,
+    .ci-body a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 15px;
+      line-height: 1.6;
+      display: block;
+    }
+
+    .ci-body a:hover { color: var(--gold); }
+
+    .contact-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .hours-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      color: var(--gold);
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hours-table td {
+      padding: 14px 0;
+      font-size: 14.5px;
+    }
+
+    .hours-table td:first-child {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hours-table td:last-child { text-align: right; }
+
+    .hours-table .open { color: var(--text); }
+    .hours-table .closed { color: #555; }
+
+    .hours-today td:first-child {
+      color: var(--gold) !important;
+      font-weight: 600;
+    }
+
+    .chat-hint {
+      margin-top: 36px;
+      padding: 22px 24px;
+      background: var(--bg-3);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+    }
+
+    .chat-hint p:first-child {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .chat-hint p:last-child {
+      font-size: 14.5px;
+      color: var(--text);
+    }
+
+    /* ─── FOOTER ──────────────────────────────── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      padding: 32px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .footer-text { font-size: 13px; color: #555; }
+
+    /* ─── CHATBOT ─────────────────────────────── */
+    .chat-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 62px;
+      height: 62px;
+      background: var(--gold);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px rgba(201,148,122,0.42);
+      z-index: 1000;
+      transition: all 0.3s;
+      font-size: 26px;
+    }
+
+    .chat-fab:hover {
+      background: var(--gold-light);
+      transform: scale(1.07);
+      box-shadow: 0 8px 32px rgba(201,148,122,0.55);
+    }
+
+    .chat-fab-pulse {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(201,148,122,0.35);
+      animation: pulse 2.5s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(1);   opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 104px;
+      right: 28px;
+      width: 370px;
+      background: #191919;
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      z-index: 999;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+      opacity: 0;
+      transform: translateY(18px) scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .chat-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    .chat-head {
+      background: linear-gradient(135deg, #1a0f0c, #261812);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .chat-head-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .chat-head-info { flex: 1; }
+
+    .chat-head-info strong {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 600;
+    }
+
+    .chat-head-info small {
+      font-size: 11.5px;
+      color: #5dba62;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .chat-head-info small::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: #5dba62;
+      border-radius: 50%;
+    }
+
+    .chat-head-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 4px;
+      transition: color 0.2s;
+      margin-left: 4px;
+    }
+
+    .chat-head-close:hover { color: var(--text); }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 200px;
+      max-height: 290px;
+      scrollbar-width: thin;
+      scrollbar-color: #2a2a2a transparent;
+    }
+
+    .chat-body::-webkit-scrollbar { width: 4px; }
+    .chat-body::-webkit-scrollbar-track { background: transparent; }
+    .chat-body::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+
+    .bubble {
+      max-width: 86%;
+      padding: 11px 15px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .bubble-bot {
+      background: #272727;
+      color: var(--text-soft);
+      align-self: flex-start;
+      border-radius: 4px 14px 14px 14px;
+    }
+
+    .bubble-user {
+      background: var(--gold);
+      color: #000;
+      align-self: flex-end;
+      border-radius: 14px 14px 4px 14px;
+      font-weight: 500;
+    }
+
+    .bubble-typing {
+      background: #272727;
+      align-self: flex-start;
+      border-radius: 4px 14px 14px 14px;
+      padding: 14px 18px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dots span {
+      width: 6px;
+      height: 6px;
+      background: #555;
+      border-radius: 50%;
+      animation: dotBounce 1.3s ease-in-out infinite;
+    }
+
+    .dots span:nth-child(2) { animation-delay: 0.18s; }
+    .dots span:nth-child(3) { animation-delay: 0.36s; }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: translateY(0);   opacity: 0.4; }
+      40%           { transform: translateY(-5px); opacity: 1;   }
+    }
+
+    .chat-chips {
+      padding: 6px 14px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .chip {
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      padding: 7px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+
+    .chip:hover {
+      background: rgba(201,148,122,0.1);
+      border-color: var(--gold);
+    }
+
+    .chat-foot {
+      padding: 12px 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 9px;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: #242424;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input::placeholder { color: #555; }
+    .chat-input:focus { border-color: var(--gold); }
+
+    .chat-send-btn {
+      width: 42px;
+      height: 42px;
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .chat-send-btn:hover { background: var(--gold-light); }
+    .chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .chat-send-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.12s; }
+    .fade-up:nth-child(5) { transition-delay: 0.24s; }
+    .fade-up:nth-child(6) { transition-delay: 0.36s; }
+
+    /* ─── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid  { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav .nav-links { display: none; }
+
+      section { padding: 80px 5%; }
+
+      .about-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 52px; }
+
+      .hero h1 { font-size: clamp(52px, 14vw, 80px); }
+
+      .chat-panel {
+        width: calc(100vw - 28px);
+        right: 14px;
+        bottom: 96px;
+      }
+
+      .hero-scroll { display: none; }
+
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ DEMO BANNER ════════════════════════════ -->
+<div class="demo-banner">
+  🎯&nbsp; Demo-Website — Erstellt von <strong>Joel Heiden</strong>&nbsp;&nbsp;·&nbsp;&nbsp;KI-Integration inklusive&nbsp;&nbsp;·&nbsp;&nbsp;<a href="mailto:joelheiden02@gmail.com">Kontakt anfragen</a>
+</div>
+
+<!-- ═══ NAV ════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">Friseur Diana</div>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#bewertungen">Bewertungen</a></li>
+    <li><a href="#kontakt" class="nav-cta">Termin anfragen</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══════════════════════════════════ -->
+<section class="hero" id="start">
+
+  <div class="hero-eyebrow">Friseursalon &middot; Lippstadt</div>
+
+  <h1>Friseur<em>Diana</em></h1>
+
+  <div class="hero-divider"></div>
+
+  <p class="hero-slogan">&ldquo;Dein Haar. Deine Persönlichkeit.&rdquo;</p>
+
+  <div class="hero-buttons">
+    <a href="#kontakt" class="btn btn-gold">Termin anfragen</a>
+    <a href="#leistungen" class="btn btn-outline">Unsere Leistungen</a>
+  </div>
+
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    Entdecken
+  </div>
+
+</section>
+
+<!-- ═══ LEISTUNGEN ═════════════════════════════ -->
+<section id="leistungen">
+  <div class="section-header">
+    <div class="section-label">Was wir anbieten</div>
+    <h2 class="section-title">Unsere Leistungen</h2>
+    <p class="section-sub">Professionelle Haarpflege &amp; Styling — maßgeschneidert für jeden Anlass und jeden Typ.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <span class="service-icon">✂️</span>
+      <div class="service-name">Damen Haarschnitt</div>
+      <p class="service-desc">Waschen, Schneiden &amp; Föhnen — individuell auf deine Haarstruktur und deinen Style abgestimmt.</p>
+      <div class="service-price">ab 35 €</div>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">💈</span>
+      <div class="service-name">Herren Haarschnitt</div>
+      <p class="service-desc">Klassisch oder modern — präzise Schnitte für den gepflegten Mann, inklusive Styling-Beratung.</p>
+      <div class="service-price">ab 25 €</div>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">🎨</span>
+      <div class="service-name">Färben &amp; Highlights</div>
+      <p class="service-desc">Strahlende Farbergebnisse mit Premium-Produkten — langanhaltend, schonend &amp; intensiv.</p>
+      <div class="service-price">ab 65 €</div>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">✨</span>
+      <div class="service-name">Balayage</div>
+      <p class="service-desc">Der natürliche Sonne-geküsste Look — handgemalt für einen nahtlosen, modernen Farbverlauf.</p>
+      <div class="service-price">ab 89 €</div>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">🌿</span>
+      <div class="service-name">Haarkur &amp; Pflege</div>
+      <p class="service-desc">Intensive Tiefenpflege für mehr Glanz, Geschmeidigkeit und sichtbar stärkeres Haar.</p>
+      <div class="service-price">ab 20 €</div>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">💍</span>
+      <div class="service-name">Brautfrisur</div>
+      <p class="service-desc">Dein perfekter Moment. Wir gestalten die Traumfrisur für den schönsten Tag in deinem Leben.</p>
+      <div class="service-price">auf Anfrage</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ÜBER UNS ════════════════════════════════ -->
+<section id="ueber-uns">
+  <div class="about-inner">
+
+    <div class="about-text fade-up">
+      <div class="section-label">Unser Salon</div>
+      <h2 class="section-title">Mehr als nur ein Haarschnitt</h2>
+      <p>Friseur Diana ist dein Ort der Ruhe und Transformation — mitten in Lippstadt, geschaffen für Menschen, die Wert auf Persönlichkeit, Atmosphäre und echte Haarpflege legen.</p>
+      <p>Inhaberin Diana und ihr Team nehmen sich Zeit für dich. Kein Hetzen, keine Kompromisse. Von der Beratung bis zum letzten Föhnstrich begleiten wir dich zu deiner besten Version.</p>
+      <div class="about-quote">
+        <p>"Schönheit beginnt in dem Moment,<br>in dem du entscheidest, du selbst zu sein."</p>
+      </div>
+    </div>
+
+    <div class="about-stats fade-up">
+      <div class="stat-card">
+        <div class="stat-icon">✂️</div>
+        <div class="stat-info">
+          <strong>10 Jahre</strong>
+          <span>Erfahrung &amp; Leidenschaft für Haare</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-info">
+          <strong>200+ Kunden</strong>
+          <span>Zufriedene Stammkunden in Lippstadt</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌿</div>
+        <div class="stat-info">
+          <strong>Nachhaltig</strong>
+          <span>Umweltfreundliche Premium-Produkte</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ BEWERTUNGEN ════════════════════════════ -->
+<section id="bewertungen">
+  <div class="reviews-header fade-up">
+    <div class="section-label">Kundenstimmen</div>
+    <h2 class="section-title">Was Kunden sagen</h2>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Absolut top! Ich bin zum ersten Mal hier gewesen und war sofort begeistert. Die Atmosphäre ist wunderschön, das Team super freundlich und mein Haarschnitt ist einfach perfekt geworden. Komme auf jeden Fall wieder!"</p>
+      <div class="review-author">
+        <div class="review-avatar">L</div>
+        <div>
+          <div class="review-name">Laura M.</div>
+          <div class="review-date">vor 2 Wochen</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Ich hab Balayage machen lassen und bin komplett verliebt in das Ergebnis. Die Stylistin hat sich richtig viel Zeit für die Beratung genommen. Qualität und Preis-Leistung stimmen absolut. Sehr zu empfehlen!"</p>
+      <div class="review-author">
+        <div class="review-avatar">S</div>
+        <div>
+          <div class="review-name">Sarah K.</div>
+          <div class="review-date">vor 1 Monat</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Als Mann war ich ehrlich gesagt skeptisch, aber der Herrenschnitt war einer der besten die ich je hatte. Schnell, präzise und wirklich eine tolle Atmosphäre. Mein neuer Lieblingsfriseur in Lippstadt."</p>
+      <div class="review-author">
+        <div class="review-avatar">T</div>
+        <div>
+          <div class="review-name">Tim R.</div>
+          <div class="review-date">vor 3 Wochen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KONTAKT ═════════════════════════════════ -->
+<section id="kontakt">
+  <div class="contact-inner">
+
+    <div class="fade-up">
+      <div class="section-label">Komm vorbei</div>
+      <h2 class="section-title">So erreichst<br>du uns</h2>
+
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-body">
+            <strong>Adresse</strong>
+            <span>Marktstraße 26a</span>
+            <span>59555 Lippstadt</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-body">
+            <strong>Telefon</strong>
+            <a href="tel:+492941958096">02941 9580965</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="ci-icon">📸</div>
+          <div class="ci-body">
+            <strong>Instagram</strong>
+            <a href="https://instagram.com/friseursalon_diana" target="_blank" rel="noopener">@friseursalon_diana</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-ctas">
+        <a href="tel:+492941958096" class="btn btn-gold">📞 Jetzt anrufen</a>
+        <a href="https://instagram.com/friseursalon_diana" target="_blank" rel="noopener" class="btn btn-outline">Instagram</a>
+      </div>
+    </div>
+
+    <div class="hours-col fade-up">
+      <h3>Öffnungszeiten</h3>
+      <table class="hours-table" id="hoursTable">
+        <tbody>
+          <tr data-day="1"><td>Montag</td><td class="open">9:00 – 19:00 Uhr</td></tr>
+          <tr data-day="2"><td>Dienstag</td><td class="open">9:00 – 19:00 Uhr</td></tr>
+          <tr data-day="3"><td>Mittwoch</td><td class="open">9:00 – 19:00 Uhr</td></tr>
+          <tr data-day="4"><td>Donnerstag</td><td class="open">9:00 – 19:00 Uhr</td></tr>
+          <tr data-day="5"><td>Freitag</td><td class="open">9:00 – 19:00 Uhr</td></tr>
+          <tr data-day="6"><td>Samstag</td><td class="open">9:00 – 18:00 Uhr</td></tr>
+          <tr data-day="0"><td>Sonntag</td><td class="closed">Geschlossen</td></tr>
+        </tbody>
+      </table>
+
+      <div class="chat-hint">
+        <p>💬 Fragen zu Terminen oder Preisen?</p>
+        <p>Unser <span style="color:var(--gold)">✂ KI-Assistent</span> hilft dir sofort — unten rechts.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Friseur Diana</div>
+  <div class="footer-text">© 2025 Friseur Diana · Marktstraße 26a, 59555 Lippstadt</div>
+  <div class="footer-text">Demo-Website</div>
+</footer>
+
+<!-- ═══ CHATBOT FAB ═════════════════════════════ -->
+<button class="chat-fab" id="chatFab" title="MrBarber KI-Assistent">
+  <div class="chat-fab-pulse"></div>
+  ✂
+</button>
+
+<!-- ═══ CHAT PANEL ══════════════════════════════ -->
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Diana Assistent">
+
+  <div class="chat-head">
+    <div class="chat-head-avatar">✂</div>
+    <div class="chat-head-info">
+      <strong>Diana Assistent</strong>
+      <small>Online — antwortet sofort</small>
+    </div>
+    <button class="chat-head-close" id="chatClose" aria-label="Chat schließen">×</button>
+  </div>
+
+  <div class="chat-body" id="chatBody"></div>
+
+  <div class="chat-chips" id="chatChips">
+    <button class="chip">Wann habt ihr geöffnet?</button>
+    <button class="chip">Was kostet ein Haarschnitt?</button>
+    <button class="chip">Wie kann ich einen Termin buchen?</button>
+  </div>
+
+  <div class="chat-foot">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Stell uns eine Frage…" maxlength="300" autocomplete="off">
+    <button class="chat-send-btn" id="chatSend" aria-label="Senden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<!-- ═══ SCRIPTS ═════════════════════════════════ -->
+<script>
+  // API-Konfiguration
+  const CONFIG = {
+    API_KEY: 'sk-ant-' + 'api03-_tFczhVcp4Az47nzTlTwq9pfxZrFvRGA-VqR07l2kJmEzZFbnzaviOtVVEPgKYQwFKL4lqLU3v9yp_C2lqCXkA-sxUkJQAA',
+    MODEL:   'claude-sonnet-4-6',
+    MAX_TOKENS: 300,
+  };
+</script>
+<script>
+  // ─── Highlight today's opening hours ───────
+  (function() {
+    const day = new Date().getDay();
+    const row = document.querySelector(`[data-day="${day}"]`);
+    if (row) row.classList.add('hours-today');
+  })();
+
+  // ─── Scroll fade-in ─────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // ─── Chatbot ────────────────────────────────
+  const fab       = document.getElementById('chatFab');
+  const panel     = document.getElementById('chatPanel');
+  const closeBtn  = document.getElementById('chatClose');
+  const body      = document.getElementById('chatBody');
+  const chipsEl   = document.getElementById('chatChips');
+  const input     = document.getElementById('chatInput');
+  const sendBtn   = document.getElementById('chatSend');
+
+  let open      = false;
+  let waiting   = false;
+  let welcomed  = false;
+  let history   = [];
+
+  const SYSTEM = `Du bist der freundliche KI-Assistent von Friseur Diana in Lippstadt. Du beantwortest Fragen zu Öffnungszeiten, Preisen, Leistungen und Terminanfragen.
+
+Salon: Friseur Diana, Marktstraße 26a, 59555 Lippstadt.
+
+Öffnungszeiten: Mo-Fr 9-19 Uhr, Sa 9-18 Uhr, So geschlossen.
+
+Preise: Damen Haarschnitt ab 35€, Herren Haarschnitt ab 25€, Färben & Highlights ab 65€, Balayage ab 89€, Haarkur & Pflege ab 20€, Brautfrisur auf Anfrage.
+
+Für Termine: Ruf uns an unter 02941 9580965 oder schreib uns auf Instagram @friseursalon_diana.
+
+Antworte kurz, freundlich, auf Deutsch. Maximal 2-3 Sätze. Keine Aufzählungen — natürliche, warme Sprache.`;
+
+  function togglePanel() {
+    open = !open;
+    panel.classList.toggle('open', open);
+    if (open && !welcomed) {
+      welcomed = true;
+      setTimeout(() => addBot('Hallo! 👋 Willkommen bei Friseur Diana in Lippstadt. Wie kann ich dir helfen?'), 260);
+    }
+    if (open) setTimeout(() => input.focus(), 380);
+  }
+
+  fab.addEventListener('click', togglePanel);
+  closeBtn.addEventListener('click', togglePanel);
+
+  function addBubble(text, role) {
+    const div = document.createElement('div');
+    div.className = `bubble bubble-${role}`;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+    return div;
+  }
+
+  function addBot(text)  { return addBubble(text, 'bot'); }
+  function addUser(text) { return addBubble(text, 'user'); }
+
+  function showTyping() {
+    const div = document.createElement('div');
+    div.id = 'typing';
+    div.className = 'bubble bubble-typing';
+    div.innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function hideTyping() {
+    const t = document.getElementById('typing');
+    if (t) t.remove();
+  }
+
+  async function send(text) {
+    text = text.trim();
+    if (!text || waiting) return;
+
+    waiting = true;
+    sendBtn.disabled = true;
+    input.value = '';
+    chipsEl.style.display = 'none';
+
+    addUser(text);
+    history.push({ role: 'user', content: text });
+    showTyping();
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': CONFIG.API_KEY.trim(),
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model:      CONFIG.MODEL,
+          max_tokens: 220,
+          system:     SYSTEM,
+          messages:   history,
+        }),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const reply = data.content[0].text;
+
+      hideTyping();
+      addBot(reply);
+      history.push({ role: 'assistant', content: reply });
+
+    } catch {
+      hideTyping();
+      addBot('Entschuldigung, da ist etwas schiefgelaufen. Ruf uns gerne direkt an: 02941 9580965 🙏');
+    }
+
+    waiting = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+
+  sendBtn.addEventListener('click', () => send(input.value));
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      send(input.value);
+    }
+  });
+
+  chipsEl.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => send(chip.textContent));
+  });
+</script>
+
+</body>
+</html>
